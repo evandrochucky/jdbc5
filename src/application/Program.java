@@ -1,8 +1,10 @@
 package application;
 
 import java.sql.Connection;
+
 import db.DB;
 import db.InsertData;
+import db.UpdateData;
 
 public class Program {
 
@@ -12,9 +14,14 @@ public class Program {
 
 		conn = DB.getConnection();
 
-		InsertData.insertSeller(conn, "Otavio", "Otavio@gmail.com", "10/01/1982", 7154.30, 7);
+		
+		InsertData.insertSeller(conn, "Leandro", "Leandro@gmail.com", "10/05/1975", 1242.30, 2);
 
-		InsertData.insertDepartment(conn, "Dept01", "Dept02");
+		InsertData.insertDepartment(conn, "Dept07", "Dept08");
+		
+		
+		UpdateData.updateSeller(conn, 200.00, 2);
+		
 
 		DB.closeConnection();
 	}
