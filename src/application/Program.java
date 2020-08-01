@@ -15,13 +15,14 @@ public class Program {
 		conn = DB.getConnection();
 
 		
-		InsertData.insertSeller(conn, "Leandro", "Leandro@gmail.com", "10/05/1975", 1242.30, 2);
+		InsertData.insertSeller(conn, "Joana", "joana@gmail.com", "23/12/1985", 1100.30, 2);
 
-		InsertData.insertDepartment(conn, "Dept07", "Dept08");
+		InsertData.insertDepartment(conn, "Dept11", "Dept12");
 		
 		
 		UpdateData.updateSeller(conn, 200.00, 2);
-		
+
+		UpdateData.updateDepartment(conn, 15, "Franquias");
 
 		DB.closeConnection();
 	}

@@ -55,42 +55,30 @@ public class UpdateData {
 		}
 	}
 	
-	public static void updateDepartment(Connection conn, String depName1, String depName2) {
+	public static void updateDepartment(Connection conn, int Id, String newName) {
 		
 		PreparedStatement st = null;
-		ResultSet rs = null;
-				
-		try{
-			
-//			st = conn.prepareStatement(
-//					"UPDATE INTO department (Name) VALUES ('Collection'), ('Marketing')",
-//					+ Statement.RETURN_GENERATED_KEYS);
 
+		try{
+	 
 			st = conn.prepareStatement(
-					"INSERT INTO department (Name) VALUES ('" + depName1 + "'), ('" + depName2 + "')",
-					+ Statement.RETURN_GENERATED_KEYS);
+					"UPDATE department "
+					+ "SET Name = ? "
+					+ "WHERE "
+					+ "(Id = ?)");
+
+			st.setString(1, newName);
+			st.setInt(2, Id);
 			
 			int rowsAffected = st.executeUpdate();
 			
-			System.out.println("Done. Department inserted! Rows Affected: " + rowsAffected);
-		
-			if (rowsAffected > 0) {
-				rs = st.getGeneratedKeys();
-				while (rs.next()) {
-					int id = rs.getInt(1);
-					System.out.println("Done! Id: " + id);
-				}
-			}
-			else {
-				System.out.println("No Rows Affected!");
-			}
+			System.out.println("Done. Department updated! Rows Affected: " + rowsAffected);
 	
 		}
 		catch (SQLException e){
 			e.printStackTrace();
 		}
 		finally{
-			DB.closeResultSet(rs);
 			DB.closeStatement(st);
 		}
 	}
